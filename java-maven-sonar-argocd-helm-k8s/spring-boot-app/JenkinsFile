@@ -7,6 +7,7 @@ pipeline {
   }
   stages {
 
+/*
       stage('Setup parameters') {
             steps {
                 script { 
@@ -22,7 +23,7 @@ pipeline {
                 }
             }
         }
-
+*/
 
 
     stage('Checkout') {
