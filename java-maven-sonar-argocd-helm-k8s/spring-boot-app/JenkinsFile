@@ -6,6 +6,25 @@ pipeline {
     }
   }
   stages {
+
+      stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                            string(
+                                defaultValue: 'http://localhost:9000/', 
+                                name: 'SONARURL', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+
+
+
     stage('Checkout') {
       steps {
         sh 'echo passed'
@@ -21,7 +40,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://localhost:9000"
+        SONAR_URL = params.SONARURL
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
