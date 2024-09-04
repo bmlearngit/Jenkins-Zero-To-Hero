@@ -40,9 +40,9 @@ pipeline {
       }
     }
     stage('Static Code Analysis') {
-      environment {
+      /* environment {
         SONAR_URL = "${SONARURL}"
-      }
+      } */
       steps {
         sh 'echo ${SONAR_URL}'
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
